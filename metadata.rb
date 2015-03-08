@@ -1,6 +1,6 @@
 name             'devbox'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Adam Edwards'
+maintainer_email 'adamedx'
 license          'All rights reserved'
 description      'Installs/Configures devbox'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))

@@ -7,18 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
-powershell_script "ExecutionPolicyAtLeastRemoteSigned" do
+powershell_script 'ExecutionPolicyAtLeastRemoteSigned' do
   architecture :x86_64
-  code <<-EOH
-    $ep = get-executionpolicy
-    if ($ep -eq "allsigned" -or $ep -eq "restricted" ) { set-executionpolicy remotesigned -force -scope localmachine}
-  EOH
+  code 'set-executionpolicy remotesigned -force -scope localmachine'
+  not_if "(get-executionpolicy -scope localmachine) -eq 'remotesigned'"
 end
 
-powershell_script "ExecutionPolicyAtLeastRemoteSignedX86" do
+powershell_script 'ExecutionPolicyAtLeastRemoteSignedX86' do
   architecture :i386
-  code <<-EOH
-    $ep = get-executionpolicy
-    if ($ep -eq "allsigned" -or $ep -eq "restricted" ) { set-executionpolicy remotesigned -force -scope localmachine}
-  EOH
+  code 'set-executionpolicy remotesigned -force -scope localmachine'
+  not_if "(get-executionpolicy -scope localmachine) -eq 'remotesigned'"
 end

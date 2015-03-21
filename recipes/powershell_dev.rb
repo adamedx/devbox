@@ -15,14 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-powershell_script 'ExecutionPolicyAtLeastRemoteSigned' do
+powershell_script 'ExecutionPolicyUnrestricted' do
   architecture :x86_64
-  code 'set-executionpolicy remotesigned -force -scope localmachine'
-  not_if "(get-executionpolicy -scope localmachine) -eq 'remotesigned'"
+  code <<-EOH
+powershell -noprofile -executionpolicy bypass -command {set-executionpolicy unrestricted -force -scope localmachine}'
+exit 0
+EOH
+  only_if "(get-executionpolicy -scope localmachine) -eq 'restricted'"
 end
 
-powershell_script 'ExecutionPolicyAtLeastRemoteSignedX86' do
+powershell_script 'ExecutionPolicyUnrestrictedX86' do
   architecture :i386
-  code 'set-executionpolicy remotesigned -force -scope localmachine'
-  not_if "(get-executionpolicy -scope localmachine) -eq 'remotesigned'"
+  code <<-EOH
+powershell -noprofile -executionpolicy bypass -command {set-executionpolicy unrestricted -force -scope localmachine}
+exit 0
+EOH
+  only_if "(get-executionpolicy -scope localmachine) -eq 'resticted'"
 end

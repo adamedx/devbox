@@ -19,9 +19,8 @@ include_recipe 'git'
 
 if node[:platform] == "windows"
   include_recipe 'chocolatey'
-  include_recipe 'devbox::powershell_dev'
-  include_recipe 'console'
-  include_recipe 'readline'
+  include_recipe 'devbox::console'
+  include_recipe 'devbox::readline'
   chocolatey "emacs"
 else
   package "emacs" do

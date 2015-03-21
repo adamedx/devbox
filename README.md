@@ -1,55 +1,33 @@
 devbox Cookbook
 ===============
-TODO: Enter the cookbook description here.
+The devbox cookbook configures Windows and Linux workstations for development. It configures the following features on a system:
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+* Git for source control
+* A text editor
+* Terminal (if your system doesn't have a good one)
+* Package manager (if your system doesn't have one)
+* Build (e.g. compilers) tools (if your system doesn't have them)
+* Optional features for interactive desktop use such as a web browser and remote desktop (if your system doesn't have it)
+* Other environmental settings optimized for development
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - devbox needs toaster to brown your bagel.
-
-Attributes
-----------
-TODO: List you cookbook attributes here.
-
-e.g.
-#### devbox::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['devbox']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+This cookbook requires one of the following operating systems: Windows, Ubuntu, CentOS, or OS X. Other operating systems may also work with the cookbook.
 
 Usage
 -----
 #### devbox::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `devbox` in your node's `run_list`:
+Add this cookbook to your runlist and converge the node -- you'll get all the non-optiona features the cookbook has to offer.
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[devbox]"
-  ]
-}
-```
+#### devbox::desktop
+Just a text editor, web browser, and remote desktop capability.
+
+#### devbox::console
+Installs ConEmu for Windows as an alternative to the built-in terminal (console) in Windows.
+
+#### devbox::readline
+On Windows, installs the PSReadline module for Readline emulation with PowerShell.
 
 License and Authors
 -------------------

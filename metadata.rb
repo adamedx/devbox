@@ -1,11 +1,16 @@
 name             'devbox'
 maintainer       'Adam Edwards'
 maintainer_email 'adamedx'
-license          'All rights reserved'
+license          'Apache 2.0'
 description      'Installs/Configures devbox'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.3.0'
 depends          'git'
 depends          'chocolatey'
-depends          'ruby_build'
 depends          'build-essential'
+
+supports         'windows'
+supports         'ubuntu'
+supports         'mac_os_x'
+supports         'centos'
+

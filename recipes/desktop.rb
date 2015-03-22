@@ -22,7 +22,7 @@ if node[:platform] != 'windows'
   package 'firefox';
   package 'emacs';
 else
-  include_recipe 'chocolatey'
+  include_recipe 'devbox::chocolatey_install'
   chocolatey 'emacs'
 end
 

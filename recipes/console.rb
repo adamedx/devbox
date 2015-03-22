@@ -16,7 +16,7 @@
 # limitations under the License.
 
 include_recipe 'devbox::powershell_dev'
-include_recipe 'chocolatey'
+include_recipe 'devbox::chocolatey_install'
 
 powershell_script 'conemu' do
   code <<-EOH

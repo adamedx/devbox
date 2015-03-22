@@ -18,8 +18,17 @@
 include_recipe 'devbox::powershell_dev'
 include_recipe 'chocolatey'
 
-chocolatey "conemu"
+powershell_script 'conemu' do
+  code <<-EOH
+chocolatey install conemu
+if ($LASTEXITCODE -ne 0)
+{
+  $LASTEXITCODE = 0
+  chocolatey install conemu
+}
+EOH
+  not_if 'get-command conemu64.exe'
+end
+
 chocolatey 'psget'
-
-
 

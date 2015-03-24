@@ -27,8 +27,21 @@ if ($LASTEXITCODE -ne 0)
   chocolatey install conemu
 }
 EOH
-  not_if 'get-command conemu64.exe'
+#  not_if 'get-command conemu64.exe'
+  only_if '(get-wmiobject Win32_MSIResource | Where-Object -Property value -like -Value conemu) -eq $null'
 end
 
-chocolatey 'psget'
+# chocolatey 'psget'
+
+powershell_script 'psget' do
+  code 'chocolatey install psget'
+  only_if <<-EOH
+if ( $env:username -eq 'system' -or $env:username.endswith('$'))
+{
+  exit 1
+}
+
+(get-module -listavailable psget) -eq $null
+EOH
+end
 

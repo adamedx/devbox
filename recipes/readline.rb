@@ -39,13 +39,22 @@ try
 catch
 {
 }
-
 mkdir -force "$destination"
 $helper = New-Object -ComObject Shell.Application
 $files = $helper.NameSpace($Source).Items()
 $result = $helper.NameSpace($Destination).CopyHere($files, 20)
 EOH
   not_if <<-EOH
+if ( $env:username -eq 'system' -or $env:username.endswith('$'))
+{
+  exit 0
+}
+
+if ($PROFILE -eq $null -or $PROFILE.length -le 3)
+{
+  exit 0
+}
+
 $profiledestination = "$PROFILE" -split '\\\\'
 $destination = $profiledestination[0..($profiledestination.length - 2)] -join '\\'
 $destination = $destination + '\\modules\\psreadline\\psreadline.psm1'

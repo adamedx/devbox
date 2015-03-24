@@ -15,18 +15,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+if node[:platform] == "windows"
+  include_recipe 'devbox::chocolatey_install'
+end
+
 include_recipe 'git'
 
 if node[:platform] == "windows"
-  include_recipe 'devbox::chocolatey_install'
   include_recipe 'devbox::console'
   include_recipe 'devbox::readline'
-  chocolatey "emacs"
+#  chocolatey "emacs"
+  powershell_script 'install_emacs_default' do
+    code 'chocolatey install emacs'
+    not_if 'get-command emacs'
+  end
 else
+  include_recipe 'apt'
   package "emacs" do
     action :install
   end
 
   include_recipe 'build-essential'
-  include_recipe 'ruby_build'
 end

@@ -18,11 +18,16 @@
 #
 
 if node[:platform] != 'windows'
+  include_recipe 'apt'
   package 'xrdp';
   package 'firefox';
   package 'emacs';
 else
   include_recipe 'devbox::chocolatey_install'
-  chocolatey 'emacs'
+#  chocolatey 'emacs'
+  powershell 'install_emacs' do
+    code 'chocolatey install emacs'
+    not_if 'get-command emacs'
+  end
 end
 

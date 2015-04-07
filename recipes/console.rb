@@ -26,7 +26,6 @@ if ($LASTEXITCODE -ne 0)
   $LASTEXITCODE = 0
   chocolatey install conemu -y
 }
-$LASTEXITCODE = 0
 EOH
 #  not_if 'get-command conemu64.exe'
   only_if '(get-wmiobject Win32_MSIResource | Where-Object -Property value -like -Value conemu) -eq $null'

@@ -26,7 +26,7 @@ else
   include_recipe 'devbox::chocolatey_install'
 #  chocolatey 'emacs'
   powershell_script 'install_emacs' do
-    code 'chocolatey install emacs'
+    code 'chocolatey install emacs -y'
     not_if 'get-command emacs'
   end
 end

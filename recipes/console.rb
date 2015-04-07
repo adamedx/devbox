@@ -20,11 +20,11 @@ include_recipe 'devbox::chocolatey_install'
 
 powershell_script 'conemu' do
   code <<-EOH
-chocolatey install conemu
+chocolatey install conemu -y
 if ($LASTEXITCODE -ne 0)
 {
   $LASTEXITCODE = 0
-  chocolatey install conemu
+  chocolatey install conemu -y
 }
 $LASTEXITCODE = 0
 EOH
@@ -35,7 +35,7 @@ end
 # chocolatey 'psget'
 
 powershell_script 'psget' do
-  code 'chocolatey install psget'
+  code 'chocolatey install psget -y'
   only_if <<-EOH
 if ( $env:username -eq 'system' -or $env:username.endswith('$'))
 {

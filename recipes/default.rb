@@ -26,7 +26,7 @@ if node[:platform] == "windows"
   include_recipe 'devbox::readline'
 #  chocolatey "emacs"
   powershell_script 'install_emacs_default' do
-    code 'chocolatey install emacs'
+    code 'chocolatey install emacs -y'
     not_if 'get-command emacs'
   end
 else

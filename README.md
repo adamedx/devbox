@@ -18,7 +18,7 @@ Usage
 -----
 #### devbox::default
 
-Add this cookbook to your runlist and converge the node -- you'll get all the non-optiona features the cookbook has to offer.
+Add this cookbook to your runlist and converge the node -- you'll get all the non-optional features the cookbook has to offer.
 
 #### devbox::desktop
 Just a text editor, web browser, and remote desktop capability.

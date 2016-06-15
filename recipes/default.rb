@@ -19,6 +19,7 @@ if node[:platform] == "windows"
   include_recipe 'devbox::chocolatey_install'
 end
 
+include_recipe 'apt' if node[:platform] != "windows"
 include_recipe 'git'
 
 if node[:platform] == "windows"
@@ -30,7 +31,6 @@ if node[:platform] == "windows"
     not_if 'get-command emacs'
   end
 else
-  include_recipe 'apt'
   package "emacs" do
     action :install
   end
